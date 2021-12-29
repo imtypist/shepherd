@@ -26,7 +26,7 @@ endif ()
 # set(CMAKE_C_COMPILER "/usr/bin/gcc")
 # set(CMAKE_CXX_COMPILER "/usr/bin/g++")
 
-project("shepherd-server" LANGUAGES C CXX)
+project("Shepherd Server" LANGUAGES C CXX)
 
 # Currently the `OpenEnclave` package depends on `project()`.
 find_package(OpenEnclave CONFIG REQUIRED)
@@ -39,6 +39,7 @@ set(OE_CRYPTO_LIB
 
 add_subdirectory(eEVM)
 add_subdirectory(enclave)
+add_subdirectory(rpclib-2.3.0)
 add_subdirectory(host)
 
 # Generate key

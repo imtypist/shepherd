@@ -1,5 +1,11 @@
 # Shepherd
 
-- client (Android App)
+## Client
 
-- server (services running on host and enclave)
+- librpc
+
+## Server
+
+- openenclave
+- eEVM
+- librpc

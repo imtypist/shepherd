@@ -8,7 +8,10 @@ add_custom_command(
     --search-path ${OE_INCLUDEDIR} --search-path
     ${OE_INCLUDEDIR}/openenclave/edl/sgx)
 
-add_executable(shepherd_host host.c
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+add_executable(shepherd_host host.cpp
                                ${CMAKE_CURRENT_BINARY_DIR}/shepherd_u.c)
 
 if (WIN32)
@@ -18,6 +21,6 @@ endif ()
 
 target_include_directories(
   shepherd_host PRIVATE # Needed for the generated file shepherd_u.h
-                          ${CMAKE_CURRENT_BINARY_DIR})
+                          ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR}/rpclib-2.3.0/include)
 
-target_link_libraries(shepherd_host openenclave::oehost)
+target_link_libraries(shepherd_host openenclave::oehost rpc Threads::Threads)
