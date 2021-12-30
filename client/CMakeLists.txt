@@ -4,11 +4,12 @@ project("Shepherd Client" LANGUAGES C CXX)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-add_subdirectory(rpclib-2.3.0)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/../rpclib ${CMAKE_BINARY_DIR}/rpclib)
 
 add_executable(client client.cpp)
 
-target_include_directories(client PRIVATE rpclib-2.3.0/include)
+target_include_directories(client PRIVATE ${PROJECT_SOURCE_DIR}/../rpclib/include)
 
 target_link_libraries(client rpc Threads::Threads)
 
