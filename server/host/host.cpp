@@ -99,6 +99,10 @@ int main(int argc, const char* argv[])
     // note: the signature is automatically captured
     srv.bind("hello_enc", &hello_enc);
 
+    srv.bind("stop_server", []() {
+        rpc::this_server().stop();
+    });
+
     // Run the server loop.
     srv.run();
 
